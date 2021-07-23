@@ -2,11 +2,22 @@ server:
   port: 8100
   shutdown: graceful
 
+logging:
+  level:
+    com:
+      wassup:
+        springcloudgateway: DEBUG
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG
+
 management:
   server:
     base-path: /
-    port: 8080
-  endpoint:
+    port: 8081
+  endpoints:
     web:
       base-path: /
       exposure:
@@ -14,3 +25,11 @@ management:
       path-mapping:
         health: /health
 
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: netty-microservice
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/v1/**
