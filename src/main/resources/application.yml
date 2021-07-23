@@ -1,0 +1,16 @@
+server:
+  port: 8100
+  shutdown: graceful
+
+management:
+  server:
+    base-path: /
+    port: 8080
+  endpoint:
+    web:
+      base-path: /
+      exposure:
+        include: health
+      path-mapping:
+        health: /health
+
