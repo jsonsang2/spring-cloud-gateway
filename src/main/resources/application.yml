@@ -4,14 +4,8 @@ server:
 
 logging:
   level:
-    com:
-      wassup:
-        springcloudgateway: DEBUG
-    org:
-      springframework:
-        web:
-          servlet:
-            DispatcherServlet: DEBUG
+    org.springframework.cloud.gateway: trace
+    reactor.netty: trace
 
 management:
   server:
