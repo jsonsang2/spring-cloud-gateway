@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="INFO">
+
+    <Properties>
+        <Property name="LOG_PATH">.</Property>
+        <Property name="LOG_FILE_NAME_ACCESS">/access</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="accessLog" fileName="${LOG_PATH}${LOG_FILE_NAME_ACCESS}.log"
+                     filePattern="${LOG_PATTERN}${LOG_FILE_NAME_ACCESS}.%d{yyyy-MM-dd}_%i.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+                <TimeBasedTriggeringPolicy/>    <!-- 시간별 로그 파일 생성 -->
+            </Policies>
+
+            <DefaultRolloverStrategy max="1000"/>  <!-- 롤링 파일 1,000개까지 생성 -->
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO" includeLocation="false" additivity="false">
+            <AppenderRef ref="accessLog"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
